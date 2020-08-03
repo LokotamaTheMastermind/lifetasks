@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.limit(10)
   end
 
   # GET /projects/1
@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Congratulations you have deleted the project successfully.' }
+        format.html { redirect_to @project, notice: 'Congratulations you have updated the project successfully.' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projects_url, notice: 'Congratulations you have deleted the project successfully.' }
       format.json { head :no_content }
     end
   end
